@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const App = () => {
+  const feedback="give feedback"
+  const statistics="statistics"
   // save clicks of each button to own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -15,7 +17,7 @@ const App = () => {
   
   return (
     <div>
-      <h1>give feedback</h1>
+      <h1>{feedback}</h1>
       <button onClick={setToGood}>
         good
       </button>
@@ -25,10 +27,10 @@ const App = () => {
       <button onClick={setToBad}>
         bad
       </button>
-      <h2>statistics</h2>
-      good {good}<br />
-      neutral {neutral}<br />
-      bad {bad}     
+      <h2>{statistics}</h2>
+        good {good}<br />
+        neutral {neutral}<br />
+        bad {bad}  
     </div>
   )
 }
