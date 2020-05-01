@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display=({text, value})=><div>{text} {value}</div>
+const Statistics=(props)=> {
+  return (
+    <div>
+      good {props.good} <br />
+      neutral {props.neutral} <br />
+      bad {props.bad} <br />
+      all {props.all} <br />
+      average {props.average} <br />
+      positive {props.positive} <br />
+    </div>
+  )
+}
 
 const App = () => {
   const feedback="give feedback"
   const statistics="statistics"
-  // save clicks of each button to own state
+
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
@@ -36,12 +47,14 @@ const App = () => {
         bad
       </button>
       <h2>{statistics}</h2>
-      <Display text='good' value={good} />
-      <Display text='neutral' value={neutral} />
-      <Display text='bad' value={bad} />
-      <Display text='all' value={all} />
-      <Display text='average' value={average} />
-      <Display text='positive' value={positiveWithPercentSign} />
+      <Statistics 
+        good={good} 
+        neutral={neutral} 
+        bad={bad} 
+        all={all} 
+        average={average} 
+        positive={positiveWithPercentSign} 
+      />
     </div>
   )
 }
