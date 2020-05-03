@@ -1,6 +1,40 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const HighestVoteIndex=(vote)=> {
+  const copy = [ ...vote ]
+  const index=copy.indexOf(Math.max(...copy))
+  return (
+    index
+  ) 
+}
+
+const HighestVoteCount=(vote)=> {
+  const copy = [ ...vote ]
+  const highestCount = Math.max(...copy)
+  console.log('Highest vote anecdote count',highestCount)
+  return (
+    highestCount
+  )
+}
+const HighestVoteAnecdote=({anecdote})=> {
+  console.log('Anecdote with highest vote:', anecdote)
+  return (
+    <div>
+     {anecdote}
+    </div>
+  )    
+}
+
+const NumberCount = ({count})=> {
+  console.log('This count',count)
+  return (
+    <div>
+      has {count} votes
+    </div>
+  )
+}
+
 const VotesArray=(vote, index)=> {
   console.log(vote, index)
   const copy = [ ...vote ]
@@ -17,6 +51,10 @@ const Button=({handleClick, text})=> (
 )
 
 const App = (props) => {
+
+  const Anecdote = "Anecdote of the day"
+  const Anecdote_Most_Votes = "Anecdote with most votes"
+
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array.apply
     (null, new Array(anecdotes.length))
@@ -31,10 +69,14 @@ const App = (props) => {
 
   return (
     <div>
+      <h1>{Anecdote}</h1>
       <b>{props.anecdotes[selected]}</b><br />
-      has {votes[selected]} votes <br />
+      <NumberCount count={votes[selected]} />
       <Button handleClick={setToVotes} text="vote" />
       <Button handleClick={setToSelected} text="next anecdote" />
+      <h1>{Anecdote_Most_Votes}</h1>
+      <HighestVoteAnecdote anecdote={props.anecdotes[HighestVoteIndex(votes)]} />
+      <NumberCount count={[HighestVoteCount(votes)]} />
     </div>
   )
 }
